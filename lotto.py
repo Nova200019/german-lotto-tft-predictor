@@ -148,7 +148,7 @@ for var in all_variables:
 dates_seq = dates_seq[indices]
 y_main_multi_hot = y_main_multi_hot[indices]
 
-print("\n📅 Example Lotto training samples with dates:")
+print("\nLotto training samples with dates:")
 for i in range(min(3, len(y_main_multi_hot))):
     numbers = np.where(y_main_multi_hot[i] == 1)[0] + 1
     print(f"{used_draw_dates[i]} -> {sorted(numbers.tolist())}")
@@ -225,7 +225,7 @@ def build_tft_model_all_vars(
 
 # Build or load the model
 if os.path.exists(MODEL_PATH):
-    print(f"\n📦 Loading model from {MODEL_PATH}...")
+    print(f"\n Loading model from {MODEL_PATH}...")
     model = load_model(MODEL_PATH)
 else:
     model = build_tft_model_all_vars(
@@ -266,7 +266,7 @@ def predict_numbers(model, input_seq, temperature=1.0):
     top_indices = np.argsort(pred_probs)[-6:][::-1]
     return sorted(top_indices + 1)
 
-# Example: Predict next draw from the last 20 draws
+
 last_seq_indices = usable_draws[-timesteps:]
 input_for_pred = {}
 for var in all_variables:
